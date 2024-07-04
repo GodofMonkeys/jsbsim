@@ -60,7 +60,7 @@ CLASS DOCUMENTATION
 DECLARATION: FGParameter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGParameter : public FGJSBBase
+class JSBSIM_API FGParameter : public FGJSBBase
 {
 public:
   virtual ~FGParameter(void) {};

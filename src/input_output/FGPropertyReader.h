@@ -66,7 +66,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGPropertyReader
+class JSBSIM_API FGPropertyReader
 {
 public:
   FGPropertyReader() {}; // Needed because the copy constructor is private

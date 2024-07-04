@@ -131,7 +131,7 @@ the number of frames to delay the output signal.
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGSensor  : public FGFCSComponent
+class JSBSIM_API FGSensor : public FGFCSComponent
 {
 public:
   FGSensor(FGFCS* fcs, Element* element);

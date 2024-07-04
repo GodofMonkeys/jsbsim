@@ -117,7 +117,7 @@ value is directly used to determine the current position of the component.
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGKinemat  : public FGFCSComponent {
+class JSBSIM_API FGKinemat  : public FGFCSComponent {
 public:
   /** Constructor.
       @param fcs A reference to the current flight control system.

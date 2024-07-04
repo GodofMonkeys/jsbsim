@@ -103,9 +103,8 @@ FGGain::FGGain(FGFCS* fcs, Element* element) : FGFCSComponent(fcs, element)
       OutMax = scale_element->FindElementValueAsNumber("max");
       OutMin = scale_element->FindElementValueAsNumber("min");
     } else {
-      cerr << "Maximum and minimum output values must be supplied for the "
-              "aerosurface scale component" << endl;
-      exit(-1);
+      throw std::invalid_argument("Maximum and minimum output values must be supplied for the "
+              "aerosurface scale component");
     }
     ZeroCentered = true;
     zero_centered = element->FindElement("zero_centered");
@@ -122,8 +121,7 @@ FGGain::FGGain(FGFCS* fcs, Element* element) : FGFCSComponent(fcs, element)
     if (element->FindElement("table")) {
       Table = new FGTable(PropertyManager, element->FindElement("table"));
     } else {
-      cerr << "A table must be provided for the scheduled gain component" << endl;
-      exit(-1);
+      throw std::invalid_argument("A table must be provided for the scheduled gain component");
     }
   }
 

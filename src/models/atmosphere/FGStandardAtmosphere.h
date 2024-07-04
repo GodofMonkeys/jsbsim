@@ -100,7 +100,7 @@ consistently and accurately calculated.
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGStandardAtmosphere : public FGAtmosphere {
+class JSBSIM_API FGStandardAtmosphere : public FGAtmosphere {
 public:
   /// Constructor
   FGStandardAtmosphere(FGFDMExec*);

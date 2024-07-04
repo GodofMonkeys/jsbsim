@@ -54,7 +54,7 @@ FORWARD DECLARATIONS
 
 namespace JSBSim {
 
-class FGXMLFileRead {
+class JSBSIM_API FGXMLFileRead {
 public:
   FGXMLFileRead(void) {}
   ~FGXMLFileRead(void) {}

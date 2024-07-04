@@ -73,7 +73,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGPropertyNode : public SGPropertyNode
+class JSBSIM_API FGPropertyNode : public SGPropertyNode
 {
   public:
     /// Destructor
@@ -376,7 +376,7 @@ class FGPropertyNode : public SGPropertyNode
 typedef SGSharedPtr<FGPropertyNode> FGPropertyNode_ptr;
 typedef SGSharedPtr<const FGPropertyNode> FGConstPropertyNode_ptr;
 
-class FGPropertyManager
+class JSBSIM_API FGPropertyManager
 {
   public:
     /// Default constructor

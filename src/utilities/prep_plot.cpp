@@ -98,7 +98,7 @@ INCLUDES
 #include <cstdlib>
 #include <cstdio>
 #include <cmath>
-#include "input_output/string_utilities.h"
+#include "../input_output/string_utilities.h"
 #include "plotXMLVisitor.h"
 
 using namespace std;

@@ -222,7 +222,7 @@ boostspeed they refer to:
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGPiston : public FGEngine
+class JSBSIM_API FGPiston : public FGEngine
 {
 public:
   /// Constructor

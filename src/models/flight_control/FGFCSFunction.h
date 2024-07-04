@@ -111,7 +111,7 @@ a function (from an aero specification):
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGFCSFunction  : public FGFCSComponent
+class JSBSIM_API FGFCSFunction  : public FGFCSComponent
 {
 public:
   FGFCSFunction(FGFCS* fcs, Element* element);

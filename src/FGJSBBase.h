@@ -44,6 +44,7 @@ INCLUDES
 #include <cmath>
 
 #include "input_output/string_utilities.h"
+#include "JSBSim_api.h"
 
 #ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -77,7 +78,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGJSBBase {
+class JSBSIM_API FGJSBBase {
 public:
   /// Constructor for FGJSBBase.
   FGJSBBase() {};

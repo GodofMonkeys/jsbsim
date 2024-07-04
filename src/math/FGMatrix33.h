@@ -71,7 +71,7 @@ CLASS DOCUMENTATION
 DECLARATION: MatrixException
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class MatrixException //: public FGJSBBase
+class JSBSIM_API MatrixException //: public FGJSBBase
 {
 public:
   std::string Message;
@@ -89,7 +89,7 @@ CLASS DOCUMENTATION
 DECLARATION: FGMatrix33
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGMatrix33
+class JSBSIM_API FGMatrix33
 {
 public:
 

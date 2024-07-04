@@ -129,7 +129,7 @@ fuel begins burning and thrust is provided.
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGRocket : public FGEngine
+class JSBSIM_API FGRocket : public FGEngine
 {
 public:
   /** Constructor.

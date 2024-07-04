@@ -83,7 +83,7 @@ DECLARATION: FGRungeKutta
    Abstract base.
 */
 
-class FGRungeKutta {
+class JSBSIM_API FGRungeKutta {
 
   public:
 

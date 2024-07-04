@@ -54,7 +54,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-struct LagrangeMultiplier {
+struct JSBSIM_API LagrangeMultiplier {
   FGColumnVector3 ForceJacobian;
   FGColumnVector3 MomentJacobian;
   double Min;

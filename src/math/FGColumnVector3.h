@@ -41,6 +41,7 @@ INCLUDES
 
 #include <iosfwd>
 #include <string>
+#include "JSBSim_api.h"
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 DEFINITIONS
@@ -67,7 +68,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGColumnVector3
+class JSBSIM_API FGColumnVector3
 {
 public:
   /** Default initializer.

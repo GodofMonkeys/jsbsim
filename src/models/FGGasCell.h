@@ -169,7 +169,7 @@ Definition of the gas cell configuration file parameters:
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-class FGGasCell : public FGForce
+class JSBSIM_API FGGasCell : public FGForce
 {
 public:
   struct Inputs {

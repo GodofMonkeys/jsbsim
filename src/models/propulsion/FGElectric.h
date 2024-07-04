@@ -71,7 +71,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGElectric : public FGEngine
+class JSBSIM_API FGElectric : public FGEngine
 {
 public:
   /// Constructor

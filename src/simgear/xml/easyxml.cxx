@@ -23,6 +23,7 @@ INCLUDES
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 using std::istream;
 using std::string;
@@ -261,35 +262,36 @@ void readXML (istream &input, XMLVisitor &visitor, const string &path)
   visitor.startXML();
 
   char buf[16384];
+  std::stringstream serr;
   while (!input.eof()) {
 
     if (!input.good()) {
       visitor.setParser(0);
       XML_ParserFree(parser);
-      cerr << "Problem reading input file " << path << endl;
-      exit(-1);
+      serr << "Problem reading input file " << path << endl;
+      throw std::invalid_argument(serr.str());
     }
 
     input.read(buf,16384);
     if (!XML_Parse(parser, buf, input.gcount(), false)) {
-      cerr << "In file " << path << ": line " << XML_GetCurrentLineNumber(parser) << endl
+      serr << "In file " << path << ": line " << XML_GetCurrentLineNumber(parser) << endl
            << "XML parse error: " << XML_ErrorString(XML_GetErrorCode(parser))
            << endl;
       visitor.setParser(0);
       XML_ParserFree(parser);
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
 
   }
 
 // Verify end of document.
   if (!XML_Parse(parser, buf, 0, true)) {
-    cerr << "In file " << path << ": line " << XML_GetCurrentLineNumber(parser) << endl
+    serr << "In file " << path << ": line " << XML_GetCurrentLineNumber(parser) << endl
          << "XML parse error: " << XML_ErrorString(XML_GetErrorCode(parser))
          << endl;
     visitor.setParser(0);
     XML_ParserFree(parser);
-    exit(-1);
+    throw std::invalid_argument(serr.str());
   }
 
   visitor.setParser(0);

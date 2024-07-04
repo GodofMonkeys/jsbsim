@@ -889,18 +889,19 @@ bool FGInitialCondition::Load(const SGPath& rstfile, bool useStoredPath)
     init_file_name = rstfile;
   }
 
+  std::stringstream serr;
   FGXMLFileRead XMLFileRead;
   Element* document = XMLFileRead.LoadXMLDocument(init_file_name);
 
   // Make sure that the document is valid
   if (!document) {
-    cerr << "File: " << init_file_name << " could not be read." << endl;
-    exit(-1);
+    serr << "File: " << init_file_name << " could not be read." << endl;
+    throw std::invalid_argument(serr.str());
   }
 
   if (document->GetName() != string("initialize")) {
-    cerr << "File: " << init_file_name << " is not a reset file." << endl;
-    exit(-1);
+    serr << "File: " << init_file_name << " is not a reset file." << endl;
+    throw std::invalid_argument(serr.str());
   }
 
   double version = HUGE_VAL;
@@ -912,8 +913,7 @@ bool FGInitialCondition::Load(const SGPath& rstfile, bool useStoredPath)
   if (version == HUGE_VAL) {
     result = Load_v1(document); // Default to the old version
   } else if (version >= 3.0) {
-    cerr << "Only initialization file formats 1 and 2 are currently supported" << endl;
-    exit (-1);
+    throw std::invalid_argument("Only initialization file formats 1 and 2 are currently supported");
   } else if (version >= 2.0) {
     result = Load_v2(document);
   } else if (version >= 1.0) {

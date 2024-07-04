@@ -43,7 +43,7 @@
 /// http://dburns.dhs.org/OSG/Articles/RefPointers/RefPointers.html
 
 template<typename T>
-class SGSharedPtr {
+class JSBSIM_API SGSharedPtr {
 public:
   SGSharedPtr(void) : _ptr(0)
   {}

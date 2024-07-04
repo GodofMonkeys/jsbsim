@@ -82,7 +82,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGNozzle : public FGThruster {
+class JSBSIM_API FGNozzle : public FGThruster {
 public:
   /// Constructor
   FGNozzle(FGFDMExec* exec, Element* el, int num = 0);

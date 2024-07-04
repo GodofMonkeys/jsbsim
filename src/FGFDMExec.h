@@ -186,7 +186,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGFDMExec : public FGJSBBase
+class JSBSIM_API FGFDMExec : public FGJSBBase
 {
   struct childData {
     FGFDMExec* exec;
@@ -311,8 +311,10 @@ public:
                       the file specified in the script will be used. If an initialization file 
                       is not given in either place, an error will result.
       @return true if successfully loads; false otherwise. */
-  bool LoadScript(const SGPath& Script, double deltaT=0.0,
-                  const SGPath& initfile=SGPath());
+      // Viktor 20240704
+      // initfile parameter has been disabled
+  bool LoadScript(const SGPath& Script, double deltaT=0.0/*,
+                  const SGPath& initfile=SGPath()*/);
 
   /** Sets the path to the engine config file directories.
       @param path path to the directory under which engine config
@@ -662,6 +664,12 @@ private:
   std::vector <std::string> PropertyCatalog;
   std::vector <childData*> ChildFDMList;
   std::vector <FGModel*> Models;
+
+  // Viktor 20240704
+  // This boolean field has been added to fix a bug we discovered in JSBSim, preventing to load scripts
+  // when an aircraft model has been already loaded.
+  // By default, this field is set to false, and it will be set to true during the entire script loading process.
+  bool isLoadingScript;
 
   bool ReadFileHeader(Element*);
   bool ReadChild(Element*);

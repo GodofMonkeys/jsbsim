@@ -102,7 +102,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGBuoyantForces : public FGModel
+class JSBSIM_API FGBuoyantForces : public FGModel
 {
 
 public:

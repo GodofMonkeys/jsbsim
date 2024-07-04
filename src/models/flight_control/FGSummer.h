@@ -106,7 +106,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGSummer  : public FGFCSComponent
+class JSBSIM_API FGSummer : public FGFCSComponent
 {
 public:
   /** Constructor.

@@ -81,7 +81,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGThruster : public FGForce {
+class JSBSIM_API FGThruster : public FGForce {
 
 public:
   /// Constructor

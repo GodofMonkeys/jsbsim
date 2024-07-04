@@ -86,7 +86,7 @@ enum State { tAll,tUdot,tVdot,tWdot,tQdot,tPdot,tRdot,tHmgt,tNlf };
 enum Control { tThrottle, tBeta, tAlpha, tElevator, tAileron, tRudder, tAltAGL,
                tTheta, tPhi, tGamma, tPitchTrim, tRollTrim, tYawTrim, tHeading };
 
-class FGTrimAxis : public FGJSBBase
+class JSBSIM_API FGTrimAxis : public FGJSBBase
 {
 public:
   /**  Constructor for Trim Axis class.

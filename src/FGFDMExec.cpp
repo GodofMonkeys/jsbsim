@@ -83,6 +83,7 @@ CLASS IMPLEMENTATION
 // Constructor
 
 FGFDMExec::FGFDMExec(FGPropertyManager* root, unsigned int* fdmctr) : Root(root), FDMctr(fdmctr)
+  , isLoadingScript(false) //Viktor 20240704
 {
   Frame           = 0;
   Error           = 0;
@@ -150,13 +151,7 @@ FGFDMExec::FGFDMExec(FGPropertyManager* root, unsigned int* fdmctr) : Root(root)
   }
 
   Debug(0);
-  // this is to catch errors in binding member functions to the property tree.
-  try {
     Allocate();
-  } catch (const string& msg ) {
-    cout << "Caught error: " << msg << endl;
-    exit(1);
-  }
 
   trim_status = false;
   ta_mode     = 99;
@@ -295,7 +290,12 @@ bool FGFDMExec::DeAllocate(void)
   for (unsigned int i=0; i<eNumStandardModels; i++) delete Models[i];
   Models.clear();
 
+  //Viktor 20240704
+  if (!isLoadingScript)
+  {
   delete Script;
+  }
+
   delete IC;
   delete Trim;
 
@@ -650,13 +650,23 @@ vector <string> FGFDMExec::EnumerateFDMs(void)
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-bool FGFDMExec::LoadScript(const SGPath& script, double deltaT,
-                           const SGPath& initfile)
+bool FGFDMExec::LoadScript(const SGPath& script, double deltaT/*,
+                           const SGPath& initfile*/)
 {
   bool result;
 
+  isLoadingScript = true; //Viktor 20240704
+  {
+    // Viktor 20240704 release previously created scripts
+    if (Script)
+    {
+      delete Script;
+    }
+
   Script = new FGScript(this);
-  result = Script->LoadScript(GetFullPath(script), deltaT, initfile);
+    result = Script->LoadScript(GetFullPath(script), deltaT/*, initfile*/);
+  }
+  isLoadingScript = false; //Viktor 20240704
 
   return result;
 }
@@ -1057,6 +1067,7 @@ bool FGFDMExec::ReadChild(Element* el)
   // set debug level to print out no additional data for child objects
   // Load the model given the aircraft name
   // reset debug level to prior setting
+  std::stringstream serr;
 
   struct childData* child = new childData;
 
@@ -1078,8 +1089,8 @@ bool FGFDMExec::ReadChild(Element* el)
   if (location) {
     child->Loc = location->FindElementTripletConvertTo("IN");
   } else {
-    cerr << endl << highint << fgred << "  No location was found for this child object!" << reset << endl;
-    exit(-1);
+    serr << endl << highint << fgred << "  No location was found for this child object!" << reset << endl;
+    throw std::invalid_argument(serr.str());
   }
 
   Element* orientation = el->FindElement("orient");

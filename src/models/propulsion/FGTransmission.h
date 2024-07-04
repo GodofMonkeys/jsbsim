@@ -111,7 +111,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGTransmission : public FGJSBBase {
+class JSBSIM_API FGTransmission : public FGJSBBase {
 
 public:
   /** Constructor for FGTransmission.

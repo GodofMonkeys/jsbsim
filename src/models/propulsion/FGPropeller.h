@@ -167,7 +167,7 @@ Airfoil Sections", NACA Report TN-640, 1938 (?)
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGPropeller : public FGThruster {
+class JSBSIM_API FGPropeller : public FGThruster {
 
 public:
   /** Constructor for FGPropeller.

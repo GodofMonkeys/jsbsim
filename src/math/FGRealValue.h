@@ -60,7 +60,7 @@ CLASS DOCUMENTATION
 DECLARATION: FGRealValue
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGRealValue : public FGParameter
+class JSBSIM_API FGRealValue : public FGParameter
 {
 public:
 

@@ -159,7 +159,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGTurbine : public FGEngine
+class JSBSIM_API FGTurbine : public FGEngine
 {
 public:
   /** Constructor

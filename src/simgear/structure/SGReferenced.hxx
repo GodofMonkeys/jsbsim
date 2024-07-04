@@ -18,6 +18,8 @@
  *
  */
 
+#include "JSBSim_api.h"
+
 #ifndef SGReferenced_HXX
 #define SGReferenced_HXX
 
@@ -26,7 +28,7 @@
 /// the SGSharedPtr class.
 /// For more info see @SGSharedPtr.
 
-class SGReferenced {
+class JSBSIM_API SGReferenced {
 public:
   SGReferenced(void) : _refcount(0u)
   {}

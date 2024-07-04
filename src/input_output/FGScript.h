@@ -189,8 +189,10 @@ public:
                       default. If a file name is passed in, it will override the
                       one present in the script.
       @return true if successful */
-  bool LoadScript(const SGPath& script, double default_dT,
-                  const SGPath& initfile);
+  // Viktor 20240704
+  // initfile parameter has been disabled
+  bool LoadScript(const SGPath& script, double default_dT/*,
+                  const SGPath& initfile*/ );
 
   /** This function is called each pass through the executive Run() method IF
       scripting is enabled.

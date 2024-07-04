@@ -96,8 +96,8 @@ FGScript::~FGScript()
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-bool FGScript::LoadScript(const SGPath& script, double default_dT,
-                          const SGPath& initfile)
+bool FGScript::LoadScript(const SGPath& script, double default_dT/*,
+                          const SGPath& initfile*/)
 {
   SGPath initialize;
   string aircraft="", prop_name="";
@@ -161,6 +161,7 @@ bool FGScript::LoadScript(const SGPath& script, double default_dT,
   
   // read aircraft and initialization files
 
+  // Viktor 20240704 The "use" tag is now optional
   element = document->FindElement("use");
   if (element) {
     aircraft = element->GetAttributeValue("aircraft");
@@ -172,7 +173,9 @@ bool FGScript::LoadScript(const SGPath& script, double default_dT,
       return false;
     }
 
-    initialize = SGPath::fromLocal8Bit(element->GetAttributeValue("initialize").c_str());
+    // Viktor 20240704
+    // The initial condition has been disabled ("initialize" attribute for tag "run")
+    /*initialize = SGPath::fromLocal8Bit(element->GetAttributeValue("initialize").c_str());
     if (initfile.isNull()) {
       if (initialize.isNull()) {
         cerr << "Initialization file must be specified in use element." << endl;
@@ -182,18 +185,20 @@ bool FGScript::LoadScript(const SGPath& script, double default_dT,
       cout << endl << "The initialization file specified in the script file (" << initialize
                    << ") has been overridden with a specified file (" << initfile << ")." << endl;
       initialize = initfile;
-    }
+    }*/
 
-  } else {
+  } /*else {
     cerr << "No \"use\" directives in the script file." << endl;
     return false;
-  }
+  }*/
 
-  FGInitialCondition *IC=FDMExec->GetIC();
+  // Viktor 20240704
+  // The initial condition has been disabled ("initialize" attribute for tag "run")
+  /*FGInitialCondition *IC=FDMExec->GetIC();
   if ( ! IC->Load( initialize )) {
     cerr << "Initialization unsuccessful" << endl;
     return false;
-  }
+  }*/
 
   // Now, read input spec if given.
   element = document->FindElement("input");
@@ -583,15 +588,16 @@ void FGScript::Debug(int from)
         if (Events[i].Delay > 0.0)
           cout << " (after a delay of " << Events[i].Delay << " secs)";
         cout << ":" << endl << "    {";
+        std::stringstream serr;
         for (unsigned j=0; j<Events[i].SetValue.size(); j++) {
           if (Events[i].SetValue[j] == 0.0 && Events[i].Functions[j] != 0L) {
             if (Events[i].SetParam[j] == 0) {
               if (Events[i].SetParamName[j].size() == 0) {
-              cerr << fgred << highint << endl
+              serr << fgred << highint << endl
                    << "  An attempt has been made to access a non-existent property" << endl
                    << "  in this event. Please check the property names used, spelling, etc."
                    << reset << endl;
-              exit(-1);
+              throw std::invalid_argument(serr.str());
               } else {
                 cout << endl << "      set " << Events[i].SetParamName[j]
                      << " to function value (Late Bound)";
@@ -603,11 +609,11 @@ void FGScript::Debug(int from)
           } else {
             if (Events[i].SetParam[j] == 0) {
               if (Events[i].SetParamName[j].size() == 0) {
-              cerr << fgred << highint << endl
+              serr << fgred << highint << endl
                    << "  An attempt has been made to access a non-existent property" << endl
                    << "  in this event. Please check the property names used, spelling, etc."
                    << reset << endl;
-              exit(-1);
+              throw std::invalid_argument(serr.str());
               } else {
                 cout << endl << "      set " << Events[i].SetParamName[j]
                      << " to function value (Late Bound)";

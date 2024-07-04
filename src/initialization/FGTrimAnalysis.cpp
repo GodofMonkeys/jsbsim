@@ -220,12 +220,10 @@ Objective::Objective(FGFDMExec* fdmex, FGTrimAnalysis* ta, double x) : _x(x), Tr
 void Objective::CostFunctionFull(long vars, Vector<double> &v, double & f)
 {
   if (vars != 7) {
-      cerr << "\nError: (Cost function for taFull mode) Dimension must be 7 !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: (Cost function for taFull mode) Dimension must be 7 !!\n");
   }
   if (TrimAnalysis->GetMode()!=taFull){
-      cerr << "\nError: must be taFull mode !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: must be taFull mode !!\n");
   }
 
   f = myCostFunctionFull(v);
@@ -235,12 +233,10 @@ void Objective::CostFunctionFull(long vars, Vector<double> &v, double & f)
 void Objective::CostFunctionFullWingsLevel(long vars, Vector<double> &v, double & f)
 {
   if (vars != 6) {
-      cerr << "\nError: (Cost function for taFullWingsLevel mode) Dimension must be 6 !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: (Cost function for taFullWingsLevel mode) Dimension must be 6 !!\n");
   }
   if (TrimAnalysis->GetMode()!=taFullWingsLevel){
-      cerr << "\nError: must be taFull mode !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: must be taFull mode !!\n");
   }
 
   f = myCostFunctionFullWingsLevel(v);
@@ -250,12 +246,10 @@ void Objective::CostFunctionFullWingsLevel(long vars, Vector<double> &v, double 
 void Objective::CostFunctionLongitudinal(long vars, Vector<double> &v, double & f)
 {
   if (vars != 3) {
-      cerr << "\nError: (Cost function for taLongitudinal mode) Dimension must be 3 !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: (Cost function for taLongitudinal mode) Dimension must be 3 !!\n");
   }
   if (TrimAnalysis->GetMode()!=taLongitudinal){
-      cerr << "\nError: trim mode must be taLongitudinal mode !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: trim mode must be taLongitudinal mode !!\n");
   }
 
   f = myCostFunctionLongitudinal(v);
@@ -265,12 +259,10 @@ void Objective::CostFunctionLongitudinal(long vars, Vector<double> &v, double & 
 void Objective::CostFunctionFullCoordinatedTurn(long vars, Vector<double> &v, double & f)
 {
   if (vars != 5) {
-      cerr << "\nError: (Cost function for taTurn mode) Dimension must be 5 !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: (Cost function for taTurn mode) Dimension must be 5 !!\n");
   }
   if (TrimAnalysis->GetMode()!=taTurn){
-      cerr << "\nError: trim mode must be taTurn mode !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: trim mode must be taTurn mode !!\n");
   }
 
   f = myCostFunctionFullCoordinatedTurn(v);
@@ -280,12 +272,10 @@ void Objective::CostFunctionFullCoordinatedTurn(long vars, Vector<double> &v, do
 void Objective::CostFunctionFullTurn(long vars, Vector<double> &v, double & f)
 {
   if (vars != 6) {
-      cerr << "\nError: (Cost function for taTurn mode) Dimension must be 6 !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: (Cost function for taTurn mode) Dimension must be 6 !!\n");
   }
   if (TrimAnalysis->GetMode()!=taTurnFull){
-      cerr << "\nError: trim mode must be taTurnFull ("<< (int)taTurnFull << ") mode !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: trim mode must be taTurnFull ("<< (int)taTurnFull << ") mode !!\n");
   }
 
   f = myCostFunctionFullTurn(v);
@@ -295,12 +285,10 @@ void Objective::CostFunctionFullTurn(long vars, Vector<double> &v, double & f)
 void Objective::CostFunctionPullUp(long vars, Vector<double> &v, double & f)
 {
   if (vars != 5) {
-      cerr << "\nError: (Cost function for taPullup mode) Dimension must be 5 !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: (Cost function for taPullup mode) Dimension must be 5 !!\n");
   }
   if (TrimAnalysis->GetMode()!=taPullup){
-      cerr << "\nError: trim mode must be taPullup mode !!\n";
-      exit(1);
+      throw std::invalid_argument("\nError: trim mode must be taPullup mode !!\n");
   }
 
   f = myCostFunctionPullUp(v);

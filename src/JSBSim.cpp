@@ -373,8 +373,8 @@ int real_main(int argc, char* argv[])
 
   // *** OPTION A: LOAD A SCRIPT, WHICH LOADS EVERYTHING ELSE *** //
   if (!ScriptName.isNull()) {
-
-    result = FDMExec->LoadScript(ScriptName, override_sim_rate_value, ResetName);
+    // Viktor 20240704
+    result = FDMExec->LoadScript(ScriptName, override_sim_rate_value/*, ResetName*/);
 
     if (!result) {
       cerr << "Script file " << ScriptName << " was not successfully loaded" << endl;

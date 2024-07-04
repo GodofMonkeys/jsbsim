@@ -110,7 +110,7 @@ time.
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGGyro  : public FGSensor, public FGSensorOrientation
+class JSBSIM_API FGGyro  : public FGSensor, public FGSensorOrientation
 {
 public:
   FGGyro(FGFCS* fcs, Element* element);

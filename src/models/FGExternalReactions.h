@@ -124,7 +124,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGExternalReactions : public FGModel
+class JSBSIM_API FGExternalReactions : public FGModel
 {
 public:
   /** Constructor.

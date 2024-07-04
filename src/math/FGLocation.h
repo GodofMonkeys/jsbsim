@@ -157,7 +157,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGLocation : public FGJSBBase
+class JSBSIM_API FGLocation : public FGJSBBase
 {
 public:
   /** Default constructor. */

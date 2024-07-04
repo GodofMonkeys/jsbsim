@@ -65,7 +65,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGMars : public FGAtmosphere {
+class JSBSIM_API FGMars : public FGAtmosphere {
 public:
   /// Constructor
   FGMars(FGFDMExec*);

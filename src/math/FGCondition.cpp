@@ -105,6 +105,7 @@ FGCondition::FGCondition(const string& test, FGPropertyManager* PropertyManager)
 {
   string property1, property2, compare_string;
   vector <string> test_strings;
+  std::stringstream serr;
 
   InitializeConditionals();
 
@@ -120,10 +121,10 @@ FGCondition::FGCondition(const string& test, FGPropertyManager* PropertyManager)
     conditional = test_strings[1];
     property2 = test_strings[2];
   } else {
-    cerr << endl << "  Conditional test is invalid: \"" << test
+    serr << endl << "  Conditional test is invalid: \"" << test
          << "\" has " << test_strings.size() << " elements in the "
          << "test condition." << endl;
-    exit(-1);
+    throw std::invalid_argument(serr.str());
   }
 
   FGPropertyNode *node = PropertyManager->GetNode(property1, false);

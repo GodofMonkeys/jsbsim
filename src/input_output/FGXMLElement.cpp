@@ -270,21 +270,22 @@ bool Element::SetAttributeValue(const std::string& key, const std::string& value
 
 double Element::GetAttributeValueAsNumber(const string& attr)
 {
+  stringstream serr;
   string attribute = GetAttributeValue(attr);
 
   if (attribute.empty()) {
-    cerr << ReadFrom() << "Expecting numeric attribute value, but got no data"
+    serr << ReadFrom() << "Expecting numeric attribute value, but got no data"
          << endl;
-    exit(-1);
+    throw std::invalid_argument(serr.str());
   }
   else {
     double number=0;
     if (is_number(trim(attribute)))
       number = atof(attribute.c_str());
     else {
-      cerr << ReadFrom() << "Expecting numeric attribute value, but got: "
+      serr << ReadFrom() << "Expecting numeric attribute value, but got: "
            << attribute << endl;
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
     
     return (number);
@@ -330,27 +331,28 @@ string Element::GetDataLine(unsigned int i)
 
 double Element::GetDataAsNumber(void)
 {
+  stringstream serr;
   if (data_lines.size() == 1) {
     double number=0;
     if (is_number(trim(data_lines[0])))
       number = atof(data_lines[0].c_str());
     else {
-      cerr << ReadFrom() << "Expected numeric value, but got: " << data_lines[0]
+      serr << ReadFrom() << "Expected numeric value, but got: " << data_lines[0]
            << endl;
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
 
     return number;
   } else if (data_lines.size() == 0) {
-    cerr << ReadFrom() << "Expected numeric value, but got no data" << endl;
-    exit(-1);
+    serr << ReadFrom() << "Expected numeric value, but got no data" << endl;
+    throw std::invalid_argument(serr.str());
   } else {
-    cerr << ReadFrom() << "Attempting to get single data value in element "
+    serr << ReadFrom() << "Attempting to get single data value in element "
          << "<" << name << ">" << endl
          << " from multiple lines:" << endl;
     for(unsigned int i=0; i<data_lines.size(); ++i)
-      cerr << data_lines[i] << endl;
-    exit(-1);
+      serr << data_lines[i] << endl;
+    throw std::invalid_argument(serr.str());
   }
 }
 
@@ -411,15 +413,16 @@ Element* Element::FindNextElement(const string& el)
 
 double Element::FindElementValueAsNumber(const string& el)
 {
+  stringstream serr;
   Element* element = FindElement(el);
   if (element) {
     double value = element->GetDataAsNumber();
     value = DisperseValue(element, value);
     return value;
   } else {
-    cerr << ReadFrom() << "Attempting to get non-existent element " << el
+    serr << ReadFrom() << "Attempting to get non-existent element " << el
          << endl;
-    exit(-1);
+    throw std::invalid_argument(serr.str());
   }
 }
 
@@ -439,27 +442,28 @@ string Element::FindElementValue(const string& el)
 
 double Element::FindElementValueAsNumberConvertTo(const string& el, const string& target_units)
 {
+  stringstream serr;
   Element* element = FindElement(el);
 
   if (!element) {
-    cerr << ReadFrom() << "Attempting to get non-existent element " << el
+    serr << ReadFrom() << "Attempting to get non-existent element " << el
          << endl;
-    exit(-1);
+    throw std::invalid_argument(serr.str());
   }
 
   string supplied_units = element->GetAttributeValue("unit");
 
   if (!supplied_units.empty()) {
     if (convert.find(supplied_units) == convert.end()) {
-      cerr << element->ReadFrom() << "Supplied unit: \""
+      serr << element->ReadFrom() << "Supplied unit: \""
            << supplied_units << "\" does not exist (typo?)." << endl;
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
     if (convert[supplied_units].find(target_units) == convert[supplied_units].end()) {
-      cerr << element->ReadFrom() << "Supplied unit: \""
+      serr << element->ReadFrom() << "Supplied unit: \""
            << supplied_units << "\" cannot be converted to " << target_units
            << endl;
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
   }
 
@@ -504,24 +508,25 @@ double Element::FindElementValueAsNumberConvertFromTo( const string& el,
                                                        const string& supplied_units,
                                                        const string& target_units)
 {
+  stringstream serr;
   Element* element = FindElement(el);
 
   if (!element) {
-    cerr << "Attempting to get non-existent element " << el << endl;
-    exit(-1);
+    serr << "Attempting to get non-existent element " << el << endl;
+    throw std::invalid_argument(serr.str());
   }
 
   if (!supplied_units.empty()) {
     if (convert.find(supplied_units) == convert.end()) {
-      cerr << element->ReadFrom() << "Supplied unit: \""
+      serr << element->ReadFrom() << "Supplied unit: \""
            << supplied_units << "\" does not exist (typo?)." << endl;
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
     if (convert[supplied_units].find(target_units) == convert[supplied_units].end()) {
-      cerr << element->ReadFrom() << "Supplied unit: \""
+      serr << element->ReadFrom() << "Supplied unit: \""
            << supplied_units << "\" cannot be converted to " << target_units
            << endl;
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
   }
 
@@ -539,6 +544,7 @@ double Element::FindElementValueAsNumberConvertFromTo( const string& el,
 
 FGColumnVector3 Element::FindElementTripletConvertTo( const string& target_units)
 {
+  stringstream serr;
   FGColumnVector3 triplet;
   Element* item;
   double value=0.0;
@@ -546,15 +552,15 @@ FGColumnVector3 Element::FindElementTripletConvertTo( const string& target_units
 
   if (!supplied_units.empty()) {
     if (convert.find(supplied_units) == convert.end()) {
-      cerr << ReadFrom() << "Supplied unit: \""
+      serr << ReadFrom() << "Supplied unit: \""
            << supplied_units << "\" does not exist (typo?)." << endl;
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
     if (convert[supplied_units].find(target_units) == convert[supplied_units].end()) {
-      cerr << ReadFrom() << "Supplied unit: \""
+      serr << ReadFrom() << "Supplied unit: \""
            << supplied_units << "\" cannot be converted to " << target_units
            << endl;
-      exit(-1);
+      throw std::invalid_argument(serr.str());
     }
   }
 
@@ -597,6 +603,7 @@ FGColumnVector3 Element::FindElementTripletConvertTo( const string& target_units
 double Element::DisperseValue(Element *e, double val, const std::string& supplied_units,
                               const std::string& target_units)
 {
+  stringstream serr;
   double value=val;
 
   bool disperse = false;
@@ -629,8 +636,8 @@ double Element::DisperseValue(Element *e, double val, const std::string& supplie
         value = (val + disp * urn)*(fabs(urn)/urn);
       }
     } else {
-      cerr << ReadFrom() << "Unknown dispersion type" << attType << endl;
-      exit(-1);
+      serr << ReadFrom() << "Unknown dispersion type" << attType << endl;
+      throw std::invalid_argument(serr.str());
     }
 
   }

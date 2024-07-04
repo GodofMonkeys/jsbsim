@@ -226,7 +226,7 @@ struct nrlmsise_output {
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class MSIS : public FGAtmosphere
+class JSBSIM_API MSIS : public FGAtmosphere
 {
 public:
 

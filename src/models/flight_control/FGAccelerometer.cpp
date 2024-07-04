@@ -68,7 +68,7 @@ FGAccelerometer::FGAccelerometer(FGFCS* fcs, Element* element)
   
   Element* location_element = element->FindElement("location");
   if (location_element) vLocation = location_element->FindElementTripletConvertTo("IN");
-  else {cerr << "No location given for accelerometer. " << endl; exit(-1);}
+  else {throw std::invalid_argument("No location given for accelerometer.");}
 
   vRadius = MassBalance->StructuralToBody(vLocation);
 

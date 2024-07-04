@@ -118,7 +118,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGEngine : public FGModelFunctions
+class JSBSIM_API FGEngine : public FGModelFunctions
 {
 public:
   struct Inputs {

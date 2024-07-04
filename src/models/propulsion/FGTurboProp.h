@@ -91,7 +91,7 @@ itt_delay [-] time constant for ITT change
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGTurboProp : public FGEngine
+class JSBSIM_API FGTurboProp : public FGEngine
 {
 public:
   /** Constructor

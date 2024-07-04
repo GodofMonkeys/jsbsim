@@ -270,8 +270,9 @@ FGfdmSocket::FGfdmSocket(int port) // assumes TCP
 
 FGfdmSocket::~FGfdmSocket()
 {
-  if (sckt) shutdown(sckt,2);
-  if (sckt_in) shutdown(sckt_in,2);
+  // Release the file descriptors to the OS.
+  if (sckt_in != INVALID_SOCKET) shutdown(sckt_in, SD_BOTH);
+  if (sckt != INVALID_SOCKET) closesocket(sckt);
   Debug(1);
 }
 
@@ -315,7 +316,7 @@ string FGfdmSocket::Receive(void)
         if (err != WSAEWOULDBLOCK) {
             printf ("Socket Closed. back to listening\n");
             closesocket (sckt_in);
-            sckt_in = -1;
+            sckt_in = INVALID_SOCKET;
         }
     }
 #endif
@@ -352,7 +353,11 @@ int FGfdmSocket::Reply(const string& text)
 
 void FGfdmSocket::Close(void)
 {
-  close(sckt_in);
+  if (sckt_in != INVALID_SOCKET && Protocol == ptTCP)
+  {
+    closesocket(sckt_in);
+    sckt_in = INVALID_SOCKET;
+  }
 }
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

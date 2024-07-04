@@ -124,7 +124,7 @@ time.
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGMagnetometer  : public FGSensor, public FGSensorOrientation
+class JSBSIM_API FGMagnetometer  : public FGSensor, public FGSensorOrientation
 {
 public:
   FGMagnetometer(FGFCS* fcs, Element* element);

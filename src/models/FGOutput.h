@@ -128,7 +128,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGOutput : public FGModel
+class JSBSIM_API FGOutput : public FGModel
 {
 public:
   FGOutput(FGFDMExec*);

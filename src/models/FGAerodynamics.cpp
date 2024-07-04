@@ -254,9 +254,7 @@ bool FGAerodynamics::Run(bool Holding)
       vForcesAtCG = vFnativeAtCG;
       break;
     default:
-      cerr << endl << "  A proper axis type has NOT been selected. Check "
-                   << "your aerodynamics definition." << endl;
-      exit(-1);
+      throw std::invalid_argument("A proper axis type has NOT been selected. Check your aerodynamics definition.");
   }
 
   // Calculate lift Lift over Drag
@@ -397,30 +395,24 @@ void FGAerodynamics::DetermineAxisSystem(Element* document)
     if (axis == "LIFT" || axis == "DRAG") {
       if (axisType == atNone) axisType = atLiftDrag;
       else if (axisType != atLiftDrag) {
-        cerr << endl << "  Mixed aerodynamic axis systems have been used in the"
-                     << " aircraft config file. (LIFT DRAG)" << endl;
+        throw std::invalid_argument("Mixed aerodynamic axis systems have been used in the aircraft config file. (LIFT DRAG)");
       }
     } else if (axis == "SIDE") {
       if (axisType != atNone && axisType != atLiftDrag && axisType != atAxialNormal) {
-        cerr << endl << "  Mixed aerodynamic axis systems have been used in the"
-                     << " aircraft config file. (SIDE)" << endl;
+        throw std::invalid_argument("Mixed aerodynamic axis systems have been used in the aircraft config file. (SIDE)");
       }
     } else if (axis == "AXIAL" || axis == "NORMAL") {
       if (axisType == atNone) axisType = atAxialNormal;
       else if (axisType != atAxialNormal) {
-        cerr << endl << "  Mixed aerodynamic axis systems have been used in the"
-                     << " aircraft config file. (NORMAL AXIAL)" << endl;
+        throw std::invalid_argument("Mixed aerodynamic axis systems have been used in the aircraft config file. (NORMAL AXIAL)");
       }
     } else if (axis == "X" || axis == "Y" || axis == "Z") {
       if (axisType == atNone) axisType = atBodyXYZ;
       else if (axisType != atBodyXYZ) {
-        cerr << endl << "  Mixed aerodynamic axis systems have been used in the"
-                     << " aircraft config file. (XYZ)" << endl;
+        throw std::invalid_argument("Mixed aerodynamic axis systems have been used in the aircraft config file. (XYZ)");
       }
     } else if (axis != "ROLL" && axis != "PITCH" && axis != "YAW") { // error
-      cerr << endl << "  An unknown axis type, " << axis << " has been specified"
-                   << " in the aircraft configuration file." << endl;
-      exit(-1);
+      throw std::invalid_argument("An unknown axis type, " + axis + " has been specified in the aircraft configuration file.");
     }
     axis_element = document->FindNextElement("axis");
   }

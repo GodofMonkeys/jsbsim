@@ -126,7 +126,7 @@ Example:
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGActuator  : public FGFCSComponent
+class JSBSIM_API FGActuator  : public FGFCSComponent
 {
 public:
   /// Constructor

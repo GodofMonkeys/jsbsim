@@ -123,7 +123,7 @@ For example,
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGPID  : public FGFCSComponent
+class JSBSIM_API FGPID : public FGFCSComponent
 {
 public:
   FGPID(FGFCS* fcs, Element* element);

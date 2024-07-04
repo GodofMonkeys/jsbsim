@@ -215,7 +215,7 @@ CLASS DOCUMENTATION
 CLASS DECLARATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-class FGGain  : public FGFCSComponent
+class JSBSIM_API FGGain  : public FGFCSComponent
 {
 public:
   FGGain(FGFCS* fcs, Element* element);
