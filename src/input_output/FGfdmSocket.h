@@ -58,7 +58,7 @@ INCLUDES
 #endif
 
 #ifdef _MSC_VER
-#  pragma comment (lib,"WSock32.lib")
+#  pragma comment (lib,"Ws2_32.lib")
 #endif
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
