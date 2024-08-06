@@ -62,7 +62,7 @@ CLASS IMPLEMENTATION
 FGMassBalance::FGMassBalance(FGFDMExec* fdmex) : FGModel(fdmex)
 {
   Name = "FGMassBalance";
-  Weight = EmptyWeight = Mass = 0.0;
+  Weight = EmptyWeight = OriginalEmptyWeight = Mass = 0.0; //Viktor
 
   vbaseXYZcg.InitMatrix(0.0);
   vXYZcg.InitMatrix(0.0);
@@ -140,6 +140,7 @@ bool FGMassBalance::Load(Element* document)
   SetAircraftBaseInertias(ReadInertiaMatrix(document));
   if (document->FindElement("emptywt")) {
     EmptyWeight = document->FindElementValueAsNumberConvertTo("emptywt", "LBS");
+	OriginalEmptyWeight = EmptyWeight; //Viktor
   }
 
   Element *element = document->FindElement("location");
@@ -190,6 +191,8 @@ bool FGMassBalance::Run(bool Holding)
   for (int fdm=0; fdm<FDMExec->GetFDMCount(); fdm++) {
     if (FDMExec->GetChildFDM(fdm)->mated) ChildFDMWeight += FDMExec->GetChildFDM(fdm)->exec->GetMassBalance()->GetWeight();
   }
+
+  EmptyWeight = OriginalEmptyWeight; //Viktor
 
   Weight = EmptyWeight + in.TanksWeight + GetTotalPointMassWeight()
     + in.GasMass*slugtolb + ChildFDMWeight;

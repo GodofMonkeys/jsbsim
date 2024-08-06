@@ -188,6 +188,7 @@ public:
 private:
   double Weight;
   double EmptyWeight;
+  double OriginalEmptyWeight; //Viktor
   double Mass;
   FGMatrix33 mJ;
   FGMatrix33 mJinv;
